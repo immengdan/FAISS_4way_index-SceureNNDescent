@@ -22,9 +22,6 @@ To run the benchmark and compare the performance of different search algorithms 
  ```
 python benchmark.py
  ```
--<index_type> can be Flat, IVF, HNSW, or LSH, corresponding to the FAISS index type.
--<encryption_type> can be one of the encryption methods, such as HE, SE, OPE, DP, or None for no encryption.
--<nprobe_value> is the number of probes to use for the IVF index (if applicable).
 
 ## Output
 The benchmark script generates CSV files and visual charts with the following metrics:
