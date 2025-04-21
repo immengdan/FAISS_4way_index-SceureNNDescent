@@ -1,6 +1,6 @@
 # FAISS_4way_index-SceureNNDescent
 
-##important: please download the correct data **base.10M.fbin** before use, and put it in the data folder.
+## important: please download the correct data **“base.10M.fbin”** before use, and put it in the data folder.
 This project is designed to benchmark privacy-preserving vector search algorithms, with a focus on FAISS-based vector search, NNDescent, and various encryption techniques. The core aim is to evaluate how different vector search algorithms perform under encryption.
 
 ## Requirements
