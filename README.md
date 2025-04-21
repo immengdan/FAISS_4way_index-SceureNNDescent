@@ -14,7 +14,13 @@ pip install -r requirements.txt
  ```
 
 ## Data
-Deep1B Dataset: You will need to download the Deep1B dataset to run the benchmarks. The dataset is available from the official source.
+Deep1B Dataset: You will need to download the [Deep1B dataset](https://learning2hash.github.io/publications/yandexdeep1B/![image](https://github.com/user-attachments/assets/038c128b-d306-45bd-a154-93844f6cffba)
+) to run the benchmarks. The dataset is available from the official source.
+open URL - find https://research.yandex.com/blog/benchmarks-for-billion-scale-similarity-search#13h2 
+DEEP-1B Documentation
+Base vector: Load the subset of 10M embeddings as your database vectors.
+Query vector:Load the query set (10K embeddings) for your queries.
+Vector Dimension: 96
 
 ## Usage
 Running the Benchmark
