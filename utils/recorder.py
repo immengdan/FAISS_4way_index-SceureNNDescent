@@ -1,0 +1,85 @@
+import os
+import json
+import pickle
+from matplotlib import pyplot as plt
+import pandas as pd
+
+class BenchmarkRecorder:
+    def __init__(self, experiment_name="benchmark"):
+        from datetime import datetime
+        self.timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        self.results_dir = f"results/{experiment_name}_{self.timestamp}"
+        os.makedirs(self.results_dir, exist_ok=True)
+        self.results = {
+            "metadata": {},
+            "runs": []
+        }
+
+    def record_metadata(self, dim, base_size, query_size):
+        self.results["metadata"] = {
+            "dimension": dim,
+            "base_size": base_size,
+            "query_size": query_size
+        }
+
+    def record_run(self, run_name, params, results, notes=""):
+        from datetime import datetime
+        self.results["runs"].append({
+            "run_name": run_name,
+            "params": params,
+            "results": results,
+            "notes": notes,
+            "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        })
+    
+    def plot_metrics(self):
+        labels = [run["run_name"] for run in self.results["runs"]]
+        recalls = [run["results"].get("recall", 0) for run in self.results["runs"]]
+        times = [run["results"].get("query_time", 0) for run in self.results["runs"]]
+
+        fig, ax = plt.subplots(1, 2, figsize=(14, 5))
+
+        ax[0].barh(labels, recalls, color='skyblue')
+        ax[0].set_title("Recall@k")
+        ax[0].invert_yaxis()
+
+        ax[1].barh(labels, times, color='salmon')
+        ax[1].set_title("Query Time (s)")
+        ax[1].invert_yaxis()
+
+        plt.tight_layout()
+        plt.savefig(os.path.join(self.results_dir, "benchmark_plot.png"))
+        plt.close()
+
+    def save_all(self):
+        json_path = os.path.join(self.results_dir, "results.json")
+        with open(json_path, "w") as f:
+            json.dump(self.results, f, indent=2)
+
+        pkl_path = os.path.join(self.results_dir, "results.pkl")
+        with open(pkl_path, "wb") as f:
+            pickle.dump(self.results, f)
+
+        df = pd.DataFrame([
+            {
+                "run_name": r["run_name"],
+                "query_time": r["results"].get("query_time", None),
+                "recall": r["results"].get("recall", None),
+                "index_time": r["results"].get("index_time", None),
+                "encryption_time": r["results"].get("encryption_time", None),
+                "decryption_time": r["results"].get("decryption_time", None),
+                "index_memory_MB": r["results"].get("index_memory_MB", None),
+                "index_size_MB": r["results"].get("index_size_MB", None),
+                "method": r["params"].get("method", ""),
+                "encrypted": r["params"].get("encrypted", False),
+                "encryption": r["params"].get("encryption", "None"),
+                "notes": r["notes"],
+                "timestamp": r["timestamp"]
+            }
+            for r in self.results["runs"]
+        ])
+        df.to_csv(os.path.join(self.results_dir, "results.csv"), index=False)
+        self.plot_metrics()
+
+        print(f"Results saved to: {self.results_dir}")
+
