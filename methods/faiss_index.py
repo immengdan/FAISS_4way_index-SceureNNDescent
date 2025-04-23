@@ -28,4 +28,5 @@ class FAISSIndexer:
             self.index.add(xb[i:i+100000])
 
     def search(self, xq, k):
-        return self.index.search(xq, k)
+        distances, indices = self.index.search(xq, k)
+        return indices, distances

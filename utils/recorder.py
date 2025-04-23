@@ -3,6 +3,7 @@ import json
 import pickle
 from matplotlib import pyplot as plt
 import pandas as pd
+import numpy as np 
 
 class BenchmarkRecorder:
     def __init__(self, experiment_name="benchmark"):
@@ -35,26 +36,53 @@ class BenchmarkRecorder:
     def plot_metrics(self):
         labels = [run["run_name"] for run in self.results["runs"]]
         recalls = [run["results"].get("recall", 0) for run in self.results["runs"]]
+        precisions = [run["results"].get("precision", 0) for run in self.results["runs"]]
         times = [run["results"].get("query_time", 0) for run in self.results["runs"]]
+        distances = [run["results"].get("mean_distance", 0) for run in self.results["runs"]]
 
-        fig, ax = plt.subplots(1, 2, figsize=(14, 5))
+        fig, ax = plt.subplots(2, 2, figsize=(14, 10))
 
-        ax[0].barh(labels, recalls, color='skyblue')
-        ax[0].set_title("Recall@k")
-        ax[0].invert_yaxis()
+        # Recall Plot
+        ax[0, 0].barh(labels, recalls, color='skyblue')
+        ax[0, 0].set_title("Recall@k")
+        ax[0, 0].invert_yaxis()
 
-        ax[1].barh(labels, times, color='salmon')
-        ax[1].set_title("Query Time (s)")
-        ax[1].invert_yaxis()
+        # Precision Plot
+        ax[0, 1].barh(labels, precisions, color='lightgreen')
+        ax[0, 1].set_title("Precision@k")
+        ax[0, 1].invert_yaxis()
+
+        # Query Time Plot
+        ax[1, 0].barh(labels, times, color='salmon')
+        ax[1, 0].set_title("Query Time (s)")
+        ax[1, 0].invert_yaxis()
+
+        # Mean Distance Plot
+        ax[1, 1].barh(labels, distances, color='lightcoral')
+        ax[1, 1].set_title("Mean Distance")
+        ax[1, 1].invert_yaxis()
 
         plt.tight_layout()
         plt.savefig(os.path.join(self.results_dir, "benchmark_plot.png"))
         plt.close()
 
     def save_all(self):
+        def convert_to_serializable(obj):
+            if isinstance(obj, (np.float32, np.float64, np.int32, np.int64)):
+                return float(obj) if isinstance(obj, (np.float32, np.float64)) else int(obj)
+            elif isinstance(obj, np.ndarray):
+                return obj.tolist()
+            elif isinstance(obj, dict):
+                return {k: convert_to_serializable(v) for k, v in obj.items()}
+            elif isinstance(obj, (list, tuple)):
+                return [convert_to_serializable(x) for x in obj]
+            return obj
+
+        serializable_results = convert_to_serializable(self.results)
+
         json_path = os.path.join(self.results_dir, "results.json")
         with open(json_path, "w") as f:
-            json.dump(self.results, f, indent=2)
+            json.dump(serializable_results, f, indent=2)
 
         pkl_path = os.path.join(self.results_dir, "results.pkl")
         with open(pkl_path, "wb") as f:
@@ -63,13 +91,15 @@ class BenchmarkRecorder:
         df = pd.DataFrame([
             {
                 "run_name": r["run_name"],
-                "query_time": r["results"].get("query_time", None),
-                "recall": r["results"].get("recall", None),
-                "index_time": r["results"].get("index_time", None),
-                "encryption_time": r["results"].get("encryption_time", None),
-                "decryption_time": r["results"].get("decryption_time", None),
-                "index_memory_MB": r["results"].get("index_memory_MB", None),
-                "index_size_MB": r["results"].get("index_size_MB", None),
+                "query_time": float(r["results"].get("query_time", 0)),
+                "recall": float(r["results"].get("recall", 0)),
+                "precision": float(r["results"].get("precision", 0)),
+                "mean_distance": float(r["results"].get("mean_distance", 0)),
+                "index_time": float(r["results"].get("index_time", 0)),
+                "encryption_time": float(r["results"].get("encryption_time", 0)),
+                "decryption_time": float(r["results"].get("decryption_time", 0)),
+                "index_memory_MB": float(r["results"].get("index_memory_MB", 0)),
+                "index_size_MB": float(r["results"].get("index_size_MB", 0)),
                 "method": r["params"].get("method", ""),
                 "encrypted": r["params"].get("encrypted", False),
                 "encryption": r["params"].get("encryption", "None"),

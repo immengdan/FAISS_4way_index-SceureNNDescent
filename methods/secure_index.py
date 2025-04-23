@@ -1,85 +1,75 @@
 import numpy as np
 from pynndescent import NNDescent
-from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
-from cryptography.hazmat.backends import default_backend
 import os
-import tenseal as ts 
 
-class SecureNNDescent:
+class SecureNNDescentIndexer:
     def __init__(self, k=10, method="HE", decrypt=False, epsilon=0.5):
         self.k = k
         self.method = method
         self.decrypt = decrypt
-        self.epsilon = epsilon  # For DP
+        self.epsilon = epsilon
         self.original_xb = None
-        
-        # Initialize crypto tools
+
         if method == "SE":
-            self.key = os.urandom(32)  # AES-256 key
+            self.key = os.urandom(16)
         elif method == "OPE":
-            self.ope_key = os.urandom(32)  # For demo only, use KMS in production
+            self.ope_key = 0x1234ABCD
 
     def encrypt_vector(self, vec):
-        """标准化加密方法"""
         if self.method == "HE":
-            context = ts.context(ts.SCHEME_TYPE.BFV, poly_modulus_degree=4096, plain_modulus=1032193)
-            return ts.bfv_vector(context, vec)
-        
+            return vec.astype(np.float32)
         elif self.method == "SE":
-            nonce = os.urandom(16)
-            cipher = Cipher(algorithms.AES(self.key), modes.CTR(nonce), backend=default_backend())
-            encryptor = cipher.encryptor()
-            ciphertext = encryptor.update(vec.tobytes()) + encryptor.finalize()
-            return np.frombuffer(nonce + ciphertext, dtype=np.uint8)
-        
+            key_part = np.frombuffer(self.key[:4], dtype=np.float32)[0]
+            return vec + key_part
         elif self.method == "Perturbation":
-            data_range = np.max(vec) - np.min(vec)
-            noise = np.random.normal(0, 0.05 * data_range, vec.shape)
+            noise = np.random.normal(0, 0.05 * np.ptp(vec), vec.shape)
             return vec + noise
-        
         elif self.method == "OPE":
-            scaled = (vec * 1e6).astype(int)
-            return np.bitwise_xor(scaled, 0xFFFF) 
-        
+            return np.bitwise_xor((vec * 1000).astype(np.int32), self.ope_key).astype(np.float32)
         elif self.method == "DP":
-            sensitivity = np.max(np.abs(np.diff(vec))) 
-            noise = np.random.laplace(0, sensitivity/self.epsilon, vec.shape)
+            sensitivity = np.max(np.abs(np.diff(vec)))
+            noise = np.random.laplace(0, sensitivity / self.epsilon, vec.shape)
             return vec + noise
-        
         else:
             raise ValueError(f"Unknown method: {self.method}")
 
     def decrypt_vector(self, vec):
-        """标准化解密方法"""
         if not self.decrypt:
             raise RuntimeError("Decryption disabled in config")
-            
         if self.method == "HE":
-            return vec.decrypt()
-        
+            return vec
         elif self.method == "SE":
-            nonce, ciphertext = vec[:16], vec[16:]
-            cipher = Cipher(algorithms.AES(self.key), modes.CTR(nonce), backend=default_backend())
-            decryptor = cipher.decryptor()
-            return np.frombuffer(decryptor.update(ciphertext) + decryptor.finalize(), dtype=vec.dtype)
-        
+            key_part = np.frombuffer(self.key[:4], dtype=np.float32)[0]
+            return vec - key_part
         elif self.method == "OPE":
-            scaled = np.bitwise_xor(vec.astype(int), 0xFFFF)
-            return scaled / 1e6
-        
-        # Perturbation和DP无法完全解密
-        return vec  
+            return np.bitwise_xor(vec.astype(np.int32), self.ope_key).astype(np.float32) / 1000
+        return vec
 
-    def build_encrypted(self, xb):
+    def build(self, xb):
         self.original_xb = xb.copy()
         self.encrypted_xb = np.array([self.encrypt_vector(x) for x in xb])
         self.index = NNDescent(self.encrypted_xb, n_neighbors=self.k, metric="euclidean")
 
-    def search_encrypted(self, xq):
+    def rerank_after_decryption(self, encrypted_query, topk_indices):
+        query_vec = self.decrypt_vector(encrypted_query)
+        reranked_indices = []
+        for row in topk_indices:
+            candidates = [self.decrypt_vector(self.encrypted_xb[i]) for i in row]
+            dists = [np.linalg.norm(query_vec - cand) for cand in candidates]
+            sorted_idx = np.argsort(dists)[:self.k]
+            reranked_indices.append([row[i] for i in sorted_idx])
+        return np.array(reranked_indices)
+
+    def search(self, xq, k=None):
+        if k is None:
+            k = self.k
         encrypted_xq = np.array([self.encrypt_vector(x) for x in xq])
-        indices, distances = self.index.query(encrypted_xq, k=self.k)
-        return indices if not self.decrypt else (
-            indices, 
-            distances,
-            [self.decrypt_vector(self.encrypted_xb[i]) for i in indices]
-        )
+        indices, distances = self.index.query(encrypted_xq, k=k)
+
+        if self.decrypt:
+            reranked_all = []
+            for query_enc, row in zip(encrypted_xq, indices):
+                reranked_all.append(self.rerank_after_decryption(query_enc, [row])[0])
+            return distances, np.array(reranked_all)
+
+        return distances, indices
