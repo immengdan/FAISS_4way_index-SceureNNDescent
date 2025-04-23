@@ -12,8 +12,9 @@ To run the project, you'll need the following Python libraries:
   
 You can install the required dependencies using pip:
  ```
-source .venv/bin/activate #for mac
-pip install -r requirements.txt
+ #for mac
+ source .venv/bin/activate 
+ pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org -r requirements.txt
  ```
 
 ## Data
