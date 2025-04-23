@@ -12,6 +12,7 @@ To run the project, you'll need the following Python libraries:
   
 You can install the required dependencies using pip:
  ```
+source .venv/bin/activate #for mac
 pip install -r requirements.txt
  ```
 
