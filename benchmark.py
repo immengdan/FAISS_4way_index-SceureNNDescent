@@ -47,7 +47,6 @@ def run_benchmark_in_batches(base_path, query_path, total_size, batch_size, k=10
             query_time = time.time() - start
 
             recall_curve = evaluate_results(true_I, I, k)
-            print("FAISS recall:", recall_curve)
             recall_at_k = recall_curve[k - 1]
             precision = evaluate_precision(true_I, I)
             mean_distance = mean_topk_distance(D)
