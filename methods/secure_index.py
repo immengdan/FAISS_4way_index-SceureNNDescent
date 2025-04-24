@@ -14,6 +14,30 @@ class SecureNNDescentIndexer:
             self.key = os.urandom(16)
         elif method == "OPE":
             self.ope_key = 0x1234ABCD
+    
+    def _debug_compare_results(self, true_I, I_encrypted, D_encrypted, k, method_name):
+        """Debug function to compare original and encrypted results"""
+        print(f"\n=== DEBUG RESULTS FOR {method_name} ===")
+        print(f"First query results comparison (top-{k}):")
+        print(f"True neighbors indices: {true_I[0]}")
+        print(f"Encrypted result indices: {I_encrypted[0]}")
+        print(f"Encrypted distances: {D_encrypted[0]}")
+        
+        # Calculate overlap
+        overlap = len(set(true_I[0]) & set(I_encrypted[0]))
+        print(f"Overlap with true results: {overlap}/{k}")
+        
+        # Print some distance statistics
+        print(f"Distance stats - min: {np.min(D_encrypted)}, max: {np.max(D_encrypted)}, mean: {np.mean(D_encrypted)}")
+        
+        # Print some example vectors
+        if hasattr(self, 'original_data'):
+            print("\nSample vector comparison:")
+            sample_idx = true_I[0][0]
+            print(f"Original vector {sample_idx}: {self.original_data[sample_idx][:5]}...")
+            if hasattr(self, 'encrypted_data'):
+                print(f"Encrypted vector {sample_idx}: {self.encrypted_data[sample_idx][:5]}...")
+                
 
     def encrypt_vector(self, vec):
         if self.method == "HE":

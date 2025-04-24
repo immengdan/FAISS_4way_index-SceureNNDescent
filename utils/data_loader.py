@@ -5,6 +5,20 @@ import numpy as np
                   IO Utils
 """
 
+def load_fvecs_fbin(filename, offset=0, count=None, dim=96):
+    """Load vectors from .fbin file format"""
+    dtype = np.float32
+    itemsize = np.dtype(dtype).itemsize
+    with open(filename, 'rb') as f:
+        f.seek(offset * dim * itemsize)
+        if count is not None:
+            data = np.fromfile(f, dtype=dtype, count=count * dim)
+            data = data.reshape(-1, dim)
+        else:
+            data = np.fromfile(f, dtype=dtype)
+            data = data.reshape(-1, dim)
+    return data
+
 def read_fbin(filename, start_idx=0, chunk_size=None):
     """ Read *.fbin file that contains float32 vectors
     Args:

@@ -1,16 +1,29 @@
 import os
 import time
-import psutil
-import tracemalloc
 from memory_profiler import memory_usage
 import numpy as np  
 
-def evaluate_results(true_indices, retrieved_indices, k):
-    correct = 0
-    for true, retrieved in zip(true_indices, retrieved_indices):
-        correct += len(set(true) & set(retrieved))
-    total = len(true_indices) * k
-    return correct / total
+def to_scalar(val):
+    if isinstance(val, np.ndarray):
+        if val.size == 1:
+            return val.item()
+        else:
+            raise ValueError(f"Expected scalar or 1-element array, but got array with shape {val.shape}: {val}")
+    return val
+
+def evaluate_results(true_neighbors, retrieved_neighbors, k):
+    recalls = []
+    for true, retrieved in zip(true_neighbors, retrieved_neighbors):
+        current_k = min(len(retrieved), k)
+
+        # transfer each element to int
+        true = [to_scalar(x) for x in true]
+        retrieved = [to_scalar(x) for x in retrieved[:current_k]]
+
+        overlap = len(set(true) & set(retrieved))
+        recalls.append(overlap / k)
+    return recalls
+
 
 def evaluate_precision(true_indices, retrieved_indices):
     correct = 0

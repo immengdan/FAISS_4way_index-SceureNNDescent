@@ -34,30 +34,31 @@ class BenchmarkRecorder:
         })
     
     def plot_metrics(self):
+        def ensure_scalar(val):
+            if isinstance(val, (list, tuple, np.ndarray)):
+                return float(np.mean(val)) 
+            return float(val)
+
         labels = [run["run_name"] for run in self.results["runs"]]
-        recalls = [run["results"].get("recall", 0) for run in self.results["runs"]]
-        precisions = [run["results"].get("precision", 0) for run in self.results["runs"]]
-        times = [run["results"].get("query_time", 0) for run in self.results["runs"]]
-        distances = [run["results"].get("mean_distance", 0) for run in self.results["runs"]]
+        recalls = [ensure_scalar(run["results"].get("recall", 0)) for run in self.results["runs"]]
+        precisions = [ensure_scalar(run["results"].get("precision", 0)) for run in self.results["runs"]]
+        times = [ensure_scalar(run["results"].get("query_time", 0)) for run in self.results["runs"]]
+        distances = [ensure_scalar(run["results"].get("mean_distance", 0)) for run in self.results["runs"]]
 
         fig, ax = plt.subplots(2, 2, figsize=(14, 10))
 
-        # Recall Plot
         ax[0, 0].barh(labels, recalls, color='skyblue')
         ax[0, 0].set_title("Recall@k")
         ax[0, 0].invert_yaxis()
 
-        # Precision Plot
         ax[0, 1].barh(labels, precisions, color='lightgreen')
         ax[0, 1].set_title("Precision@k")
         ax[0, 1].invert_yaxis()
 
-        # Query Time Plot
         ax[1, 0].barh(labels, times, color='salmon')
         ax[1, 0].set_title("Query Time (s)")
         ax[1, 0].invert_yaxis()
 
-        # Mean Distance Plot
         ax[1, 1].barh(labels, distances, color='lightcoral')
         ax[1, 1].set_title("Mean Distance")
         ax[1, 1].invert_yaxis()
@@ -92,14 +93,14 @@ class BenchmarkRecorder:
             {
                 "run_name": r["run_name"],
                 "query_time": float(r["results"].get("query_time", 0)),
-                "recall": float(r["results"].get("recall", 0)),
+               "recall": r["results"].get("recall", []),  # 这里假设 recall 是一个列表
                 "precision": float(r["results"].get("precision", 0)),
                 "mean_distance": float(r["results"].get("mean_distance", 0)),
                 "index_time": float(r["results"].get("index_time", 0)),
                 "encryption_time": float(r["results"].get("encryption_time", 0)),
                 "decryption_time": float(r["results"].get("decryption_time", 0)),
                 "index_memory_MB": float(r["results"].get("index_memory_MB", 0)),
-                "index_size_MB": float(r["results"].get("index_size_MB", 0)),
+               "index_size_MB": float(r["results"].get("index_size_MB", 0)),
                 "method": r["params"].get("method", ""),
                 "encrypted": r["params"].get("encrypted", False),
                 "encryption": r["params"].get("encryption", "None"),
