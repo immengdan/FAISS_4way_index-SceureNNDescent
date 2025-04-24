@@ -162,6 +162,8 @@ def run_benchmark_in_batches(base_path, query_path, total_size, batch_size, k=10
                 )
 
                 recall_dict[f"Secure_NNDescent_{method.lower()}_{'dec' if decrypt else 'nodec'}"] = recall_curve
+        
+        offset += size
 
     recorder.save_all()
     print("\n=== Lightweight Benchmark Finished ===")
