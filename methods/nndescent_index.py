@@ -93,7 +93,7 @@ class NNDescentIndexer:
         if self.verbose:
             print(f"Search completed in {time.time() - start_time:.2f} seconds")
         
-        return distances, indices
+        return indices, distances
 
     def save(self, filename):
         """Save the index to disk"""

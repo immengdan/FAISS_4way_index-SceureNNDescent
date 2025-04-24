@@ -16,7 +16,7 @@ xq = load_fvecs_fbin(query_path, count=nq, dim=dim)
 
 flat_index = FAISSIndexer(dim, "flat")
 flat_index.add_with_progress(xb)
-true_I, true_D = flat_index.search(xq, k)
+true_D, true_I = flat_index.search(xq, k)
 
 recall_dict = {}
 
@@ -24,13 +24,13 @@ def run_faiss_baseline():
     indexer = FAISSIndexer(dim, "flat")
     indexer.add_with_progress(xb)
     _, I = indexer.search(xq, k)
-    recall = evaluate_results(true_D, I, k)
+    recall = evaluate_results(true_I, I, k)
     print("FAISS recall:", recall)
 
 def run_nndescent_baseline():
     nndescent = NNDescentIndexer(n_neighbors=k)
     nndescent.build(xb)
-    distances, indices = nndescent.search(xq, k)
+    indices, distances = nndescent.search(xq, k)
     print("Indices shape:", indices.shape)
     print("Indices sample:", indices[0])
     recall = evaluate_results(true_I, indices, k)

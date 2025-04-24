@@ -93,12 +93,10 @@ class BenchmarkRecorder:
             {
                 "run_name": r["run_name"],
                 "query_time": float(r["results"].get("query_time", 0)),
-               "recall": r["results"].get("recall", []),  # 这里假设 recall 是一个列表
+               "recall": r["results"].get("recall", []),
                 "precision": float(r["results"].get("precision", 0)),
                 "mean_distance": float(r["results"].get("mean_distance", 0)),
                 "index_time": float(r["results"].get("index_time", 0)),
-                "encryption_time": float(r["results"].get("encryption_time", 0)),
-                "decryption_time": float(r["results"].get("decryption_time", 0)),
                 "index_memory_MB": float(r["results"].get("index_memory_MB", 0)),
                "index_size_MB": float(r["results"].get("index_size_MB", 0)),
                 "method": r["params"].get("method", ""),
