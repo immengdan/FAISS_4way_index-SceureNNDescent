@@ -1,0 +1,2865 @@
+{
+  "metadata": {},
+  "runs": [
+    {
+      "run_name": "faiss_flat",
+      "params": {
+        "index_type": "flat"
+      },
+      "results": {
+        "query_time": 11.349914073944092,
+        "recall": 0.4,
+        "precision": 0.4,
+        "mean_distance": 0.43390312790870667,
+        "index_time": 0.11859393119812012,
+        "index_memory_MB": 2290.78125,
+        "index_size_MB": 0.0
+      },
+      "notes": "FAISS baseline on lightweight data",
+      "timestamp": "2025-04-25 00:20:26"
+    },
+    {
+      "run_name": "faiss_ivf",
+      "params": {
+        "index_type": "ivf"
+      },
+      "results": {
+        "query_time": 1.2439310550689697,
+        "recall": 0.5,
+        "precision": 0.41516,
+        "mean_distance": 0.4711875021457672,
+        "index_time": 0.3043038845062256,
+        "index_memory_MB": 2474.34375,
+        "index_size_MB": 0.0
+      },
+      "notes": "FAISS baseline on lightweight data",
+      "timestamp": "2025-04-25 00:20:30"
+    },
+    {
+      "run_name": "faiss_hnsw",
+      "params": {
+        "index_type": "hnsw"
+      },
+      "results": {
+        "query_time": 0.12880587577819824,
+        "recall": 0.5,
+        "precision": 0.47922,
+        "mean_distance": 0.4546363353729248,
+        "index_time": 20.27516531944275,
+        "index_memory_MB": 3705.609375,
+        "index_size_MB": 0.0
+      },
+      "notes": "FAISS baseline on lightweight data",
+      "timestamp": "2025-04-25 00:21:21"
+    },
+    {
+      "run_name": "faiss_lsh",
+      "params": {
+        "index_type": "lsh"
+      },
+      "results": {
+        "query_time": 1.7022521495819092,
+        "recall": 0.3,
+        "precision": 0.14671,
+        "mean_distance": 22.383399963378906,
+        "index_time": 0.20364093780517578,
+        "index_memory_MB": 2477.109375,
+        "index_size_MB": 0.0
+      },
+      "notes": "FAISS baseline on lightweight data",
+      "timestamp": "2025-04-25 00:21:27"
+    },
+    {
+      "run_name": "nndescent_plain",
+      "params": {
+        "method": "nndescent",
+        "encrypted": false
+      },
+      "results": {
+        "query_time": 1.274071216583252,
+        "recall": 1.0,
+        "precision": 0.65453,
+        "mean_distance": 0.6831213235855103,
+        "index_time": 90.48363208770752,
+        "index_memory_MB": 9327.578125,
+        "index_size_MB": 0.0
+      },
+      "notes": "NNDescent baseline on lightweight data",
+      "timestamp": "2025-04-25 00:24:20"
+    },
+    {
+      "run_name": "nndescent_secure_he_nodec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "HE",
+        "decryption": false
+      },
+      "results": {
+        "query_time": 43.940428018569946,
+        "recall": 1.0,
+        "precision": 0.65356,
+        "mean_distance": 0.6832510828971863,
+        "index_time": 50.46730589866638,
+        "index_memory_MB": 7269.734375,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using HE, decrypt=False",
+      "timestamp": "2025-04-25 00:26:57"
+    },
+    {
+      "run_name": "nndescent_secure_he_dec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "HE",
+        "decryption": true
+      },
+      "results": {
+        "query_time": 42.28888130187988,
+        "recall": 1.0,
+        "precision": 0.65387,
+        "mean_distance": 0.6833802461624146,
+        "index_time": 56.03761291503906,
+        "index_memory_MB": 10537.796875,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using HE, decrypt=True",
+      "timestamp": "2025-04-25 00:29:37"
+    },
+    {
+      "run_name": "nndescent_secure_se_nodec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "SE",
+        "decryption": false
+      },
+      "results": {
+        "query_time": 43.318726778030396,
+        "recall": 0.3,
+        "precision": 0.34568,
+        "mean_distance": 0.5373513698577881,
+        "index_time": 53.08760380744934,
+        "index_memory_MB": 10996.03125,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using SE, decrypt=False",
+      "timestamp": "2025-04-25 00:32:08"
+    },
+    {
+      "run_name": "nndescent_secure_se_dec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "SE",
+        "decryption": true
+      },
+      "results": {
+        "query_time": 46.2647500038147,
+        "recall": 0.7,
+        "precision": 0.33343,
+        "mean_distance": 0.8153085112571716,
+        "index_time": 72.33647799491882,
+        "index_memory_MB": 11288.625,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using SE, decrypt=True",
+      "timestamp": "2025-04-25 00:35:25"
+    },
+    {
+      "run_name": "nndescent_secure_perturbation_nodec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "Perturbation",
+        "decryption": false
+      },
+      "results": {
+        "query_time": 42.203848361968994,
+        "recall": 0.8,
+        "precision": 0.59667,
+        "mean_distance": 0.6955020427703857,
+        "index_time": 54.34289908409119,
+        "index_memory_MB": 11229.78125,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using Perturbation, decrypt=False",
+      "timestamp": "2025-04-25 00:38:04"
+    },
+    {
+      "run_name": "nndescent_secure_perturbation_dec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "Perturbation",
+        "decryption": true
+      },
+      "results": {
+        "query_time": 44.4188768863678,
+        "recall": 0.8,
+        "precision": 0.59887,
+        "mean_distance": 0.6898267269134521,
+        "index_time": 64.83220720291138,
+        "index_memory_MB": 11374.78125,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using Perturbation, decrypt=True",
+      "timestamp": "2025-04-25 00:40:57"
+    },
+    {
+      "run_name": "nndescent_secure_ope_nodec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "OPE",
+        "decryption": false
+      },
+      "results": {
+        "query_time": 42.15481686592102,
+        "recall": 1.0,
+        "precision": 0.65605,
+        "mean_distance": 68.3082275390625,
+        "index_time": 60.62302803993225,
+        "index_memory_MB": 11153.296875,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using OPE, decrypt=False",
+      "timestamp": "2025-04-25 00:43:37"
+    },
+    {
+      "run_name": "nndescent_secure_ope_dec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "OPE",
+        "decryption": true
+      },
+      "results": {
+        "query_time": 42.1934700012207,
+        "recall": 1.0,
+        "precision": 0.65605,
+        "mean_distance": 0.6830823421478271,
+        "index_time": 53.29110908508301,
+        "index_memory_MB": 11510.390625,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using OPE, decrypt=True",
+      "timestamp": "2025-04-25 00:46:05"
+    },
+    {
+      "run_name": "nndescent_secure_dp_nodec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "DP",
+        "decryption": false
+      },
+      "results": {
+        "query_time": 44.091606855392456,
+        "recall": 0.0,
+        "precision": 0.0,
+        "mean_distance": 28.481576919555664,
+        "index_time": 86.18730688095093,
+        "index_memory_MB": 11635.53125,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using DP, decrypt=False",
+      "timestamp": "2025-04-25 00:49:25"
+    },
+    {
+      "run_name": "nndescent_secure_dp_dec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "DP",
+        "decryption": true
+      },
+      "results": {
+        "query_time": 44.088788986206055,
+        "recall": 0.0,
+        "precision": 1e-05,
+        "mean_distance": 19.47894859313965,
+        "index_time": 73.01196908950806,
+        "index_memory_MB": 11721.03125,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using DP, decrypt=True",
+      "timestamp": "2025-04-25 00:52:43"
+    },
+    {
+      "run_name": "faiss_flat",
+      "params": {
+        "index_type": "flat"
+      },
+      "results": {
+        "query_time": 11.391286849975586,
+        "recall": 0.4,
+        "precision": 0.4,
+        "mean_distance": 0.43353527784347534,
+        "index_time": 0.10899090766906738,
+        "index_memory_MB": 4157.4375,
+        "index_size_MB": 0.0
+      },
+      "notes": "FAISS baseline on lightweight data",
+      "timestamp": "2025-04-25 00:53:04"
+    },
+    {
+      "run_name": "faiss_ivf",
+      "params": {
+        "index_type": "ivf"
+      },
+      "results": {
+        "query_time": 1.1745500564575195,
+        "recall": 0.5,
+        "precision": 0.41646,
+        "mean_distance": 0.47116705775260925,
+        "index_time": 0.30478787422180176,
+        "index_memory_MB": 4066.046875,
+        "index_size_MB": 0.0
+      },
+      "notes": "FAISS baseline on lightweight data",
+      "timestamp": "2025-04-25 00:53:09"
+    },
+    {
+      "run_name": "faiss_hnsw",
+      "params": {
+        "index_type": "hnsw"
+      },
+      "results": {
+        "query_time": 0.1155850887298584,
+        "recall": 0.5,
+        "precision": 0.47997,
+        "mean_distance": 0.454313725233078,
+        "index_time": 20.415220022201538,
+        "index_memory_MB": 5184.015625,
+        "index_size_MB": 0.0
+      },
+      "notes": "FAISS baseline on lightweight data",
+      "timestamp": "2025-04-25 00:54:01"
+    },
+    {
+      "run_name": "faiss_lsh",
+      "params": {
+        "index_type": "lsh"
+      },
+      "results": {
+        "query_time": 1.6848342418670654,
+        "recall": 0.0,
+        "precision": 0.14987,
+        "mean_distance": 22.388559341430664,
+        "index_time": 0.20508694648742676,
+        "index_memory_MB": 3955.5625,
+        "index_size_MB": 0.0
+      },
+      "notes": "FAISS baseline on lightweight data",
+      "timestamp": "2025-04-25 00:54:06"
+    },
+    {
+      "run_name": "nndescent_plain",
+      "params": {
+        "method": "nndescent",
+        "encrypted": false
+      },
+      "results": {
+        "query_time": 1.3836867809295654,
+        "recall": 0.7,
+        "precision": 0.65531,
+        "mean_distance": 0.6829878687858582,
+        "index_time": 78.40162420272827,
+        "index_memory_MB": 10625.859375,
+        "index_size_MB": 0.0
+      },
+      "notes": "NNDescent baseline on lightweight data",
+      "timestamp": "2025-04-25 00:56:46"
+    },
+    {
+      "run_name": "nndescent_secure_he_nodec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "HE",
+        "decryption": false
+      },
+      "results": {
+        "query_time": 45.629230260849,
+        "recall": 0.5,
+        "precision": 0.65461,
+        "mean_distance": 0.6830190420150757,
+        "index_time": 50.82171297073364,
+        "index_memory_MB": 11509.15625,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using HE, decrypt=False",
+      "timestamp": "2025-04-25 00:59:26"
+    },
+    {
+      "run_name": "nndescent_secure_he_dec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "HE",
+        "decryption": true
+      },
+      "results": {
+        "query_time": 44.479076862335205,
+        "recall": 0.6,
+        "precision": 0.65366,
+        "mean_distance": 0.6831722855567932,
+        "index_time": 44.15575075149536,
+        "index_memory_MB": 10695.65625,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using HE, decrypt=True",
+      "timestamp": "2025-04-25 01:02:01"
+    },
+    {
+      "run_name": "nndescent_secure_se_nodec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "SE",
+        "decryption": false
+      },
+      "results": {
+        "query_time": 41.921207666397095,
+        "recall": 0.3,
+        "precision": 0.29497,
+        "mean_distance": 0.5289894342422485,
+        "index_time": 86.03735208511353,
+        "index_memory_MB": 11064.1875,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using SE, decrypt=False",
+      "timestamp": "2025-04-25 01:05:10"
+    },
+    {
+      "run_name": "nndescent_secure_se_dec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "SE",
+        "decryption": true
+      },
+      "results": {
+        "query_time": 42.519288063049316,
+        "recall": 0.3,
+        "precision": 0.3138,
+        "mean_distance": NaN,
+        "index_time": 57.8987340927124,
+        "index_memory_MB": 11165.59375,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using SE, decrypt=True",
+      "timestamp": "2025-04-25 01:07:54"
+    },
+    {
+      "run_name": "nndescent_secure_perturbation_nodec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "Perturbation",
+        "decryption": false
+      },
+      "results": {
+        "query_time": 43.014023780822754,
+        "recall": 0.5,
+        "precision": 0.59533,
+        "mean_distance": 0.6952300071716309,
+        "index_time": 62.54864311218262,
+        "index_memory_MB": 11411.4375,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using Perturbation, decrypt=False",
+      "timestamp": "2025-04-25 01:10:47"
+    },
+    {
+      "run_name": "nndescent_secure_perturbation_dec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "Perturbation",
+        "decryption": true
+      },
+      "results": {
+        "query_time": 42.72940397262573,
+        "recall": 0.4,
+        "precision": 0.59866,
+        "mean_distance": 0.6895365715026855,
+        "index_time": 66.57366800308228,
+        "index_memory_MB": 11422.984375,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using Perturbation, decrypt=True",
+      "timestamp": "2025-04-25 01:13:38"
+    },
+    {
+      "run_name": "nndescent_secure_ope_nodec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "OPE",
+        "decryption": false
+      },
+      "results": {
+        "query_time": 43.89512515068054,
+        "recall": 0.7,
+        "precision": 0.65621,
+        "mean_distance": 68.29058837890625,
+        "index_time": 44.14859318733215,
+        "index_memory_MB": 11371.078125,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using OPE, decrypt=False",
+      "timestamp": "2025-04-25 01:16:06"
+    },
+    {
+      "run_name": "nndescent_secure_ope_dec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "OPE",
+        "decryption": true
+      },
+      "results": {
+        "query_time": 41.9415168762207,
+        "recall": 0.7,
+        "precision": 0.65621,
+        "mean_distance": 0.682905912399292,
+        "index_time": 80.69599318504333,
+        "index_memory_MB": 11214.59375,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using OPE, decrypt=True",
+      "timestamp": "2025-04-25 01:19:01"
+    },
+    {
+      "run_name": "nndescent_secure_dp_nodec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "DP",
+        "decryption": false
+      },
+      "results": {
+        "query_time": 42.09923696517944,
+        "recall": 0.0,
+        "precision": 1e-05,
+        "mean_distance": 28.498546600341797,
+        "index_time": 53.50791597366333,
+        "index_memory_MB": 11629.140625,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using DP, decrypt=False",
+      "timestamp": "2025-04-25 01:21:46"
+    },
+    {
+      "run_name": "nndescent_secure_dp_dec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "DP",
+        "decryption": true
+      },
+      "results": {
+        "query_time": 43.110870122909546,
+        "recall": 0.0,
+        "precision": 1e-05,
+        "mean_distance": 19.5167293548584,
+        "index_time": 85.86624002456665,
+        "index_memory_MB": 11655.65625,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using DP, decrypt=True",
+      "timestamp": "2025-04-25 01:25:10"
+    },
+    {
+      "run_name": "faiss_flat",
+      "params": {
+        "index_type": "flat"
+      },
+      "results": {
+        "query_time": 11.354116201400757,
+        "recall": 0.4,
+        "precision": 0.4,
+        "mean_distance": 0.4337597191333771,
+        "index_time": 0.10311317443847656,
+        "index_memory_MB": 4138.15625,
+        "index_size_MB": 0.0
+      },
+      "notes": "FAISS baseline on lightweight data",
+      "timestamp": "2025-04-25 01:25:32"
+    },
+    {
+      "run_name": "faiss_ivf",
+      "params": {
+        "index_type": "ivf"
+      },
+      "results": {
+        "query_time": 1.2722957134246826,
+        "recall": 0.5,
+        "precision": 0.41796,
+        "mean_distance": 0.4706113934516907,
+        "index_time": 0.3139650821685791,
+        "index_memory_MB": 4014.8125,
+        "index_size_MB": 0.0
+      },
+      "notes": "FAISS baseline on lightweight data",
+      "timestamp": "2025-04-25 01:25:36"
+    },
+    {
+      "run_name": "faiss_hnsw",
+      "params": {
+        "index_type": "hnsw"
+      },
+      "results": {
+        "query_time": 0.11588311195373535,
+        "recall": 0.5,
+        "precision": 0.48031,
+        "mean_distance": 0.4541861414909363,
+        "index_time": 20.538561820983887,
+        "index_memory_MB": 5193.625,
+        "index_size_MB": 0.0
+      },
+      "notes": "FAISS baseline on lightweight data",
+      "timestamp": "2025-04-25 01:26:28"
+    },
+    {
+      "run_name": "faiss_lsh",
+      "params": {
+        "index_type": "lsh"
+      },
+      "results": {
+        "query_time": 1.7006721496582031,
+        "recall": 0.1,
+        "precision": 0.14811,
+        "mean_distance": 22.37824058532715,
+        "index_time": 0.20384812355041504,
+        "index_memory_MB": 3965.140625,
+        "index_size_MB": 0.0
+      },
+      "notes": "FAISS baseline on lightweight data",
+      "timestamp": "2025-04-25 01:26:33"
+    },
+    {
+      "run_name": "nndescent_plain",
+      "params": {
+        "method": "nndescent",
+        "encrypted": false
+      },
+      "results": {
+        "query_time": 1.0542068481445312,
+        "recall": 0.9,
+        "precision": 0.65389,
+        "mean_distance": 0.6832258701324463,
+        "index_time": 78.86669492721558,
+        "index_memory_MB": 10685.53125,
+        "index_size_MB": 0.0
+      },
+      "notes": "NNDescent baseline on lightweight data",
+      "timestamp": "2025-04-25 01:29:15"
+    },
+    {
+      "run_name": "nndescent_secure_he_nodec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "HE",
+        "decryption": false
+      },
+      "results": {
+        "query_time": 45.20939493179321,
+        "recall": 0.9,
+        "precision": 0.65519,
+        "mean_distance": 0.6829840540885925,
+        "index_time": 183.33165216445923,
+        "index_memory_MB": 11298.578125,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using HE, decrypt=False",
+      "timestamp": "2025-04-25 01:34:09"
+    },
+    {
+      "run_name": "nndescent_secure_he_dec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "HE",
+        "decryption": true
+      },
+      "results": {
+        "query_time": 42.529189109802246,
+        "recall": 1.0,
+        "precision": 0.65289,
+        "mean_distance": 0.6833593249320984,
+        "index_time": 59.276638984680176,
+        "index_memory_MB": 10444.359375,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using HE, decrypt=True",
+      "timestamp": "2025-04-25 01:36:54"
+    },
+    {
+      "run_name": "nndescent_secure_se_nodec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "SE",
+        "decryption": false
+      },
+      "results": {
+        "query_time": 41.608739137649536,
+        "recall": 0.6,
+        "precision": 0.29948,
+        "mean_distance": 0.4671340584754944,
+        "index_time": 93.60590291023254,
+        "index_memory_MB": 11015.78125,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using SE, decrypt=False",
+      "timestamp": "2025-04-25 01:40:06"
+    },
+    {
+      "run_name": "nndescent_secure_se_dec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "SE",
+        "decryption": true
+      },
+      "results": {
+        "query_time": 44.55011320114136,
+        "recall": 0.5,
+        "precision": 0.34338,
+        "mean_distance": 0.8088650703430176,
+        "index_time": 54.36763072013855,
+        "index_memory_MB": 11009.890625,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using SE, decrypt=True",
+      "timestamp": "2025-04-25 01:43:03"
+    },
+    {
+      "run_name": "nndescent_secure_perturbation_nodec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "Perturbation",
+        "decryption": false
+      },
+      "results": {
+        "query_time": 42.92288780212402,
+        "recall": 0.6,
+        "precision": 0.59601,
+        "mean_distance": 0.6952367424964905,
+        "index_time": 51.43583011627197,
+        "index_memory_MB": 11376.421875,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using Perturbation, decrypt=False",
+      "timestamp": "2025-04-25 01:45:41"
+    },
+    {
+      "run_name": "nndescent_secure_perturbation_dec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "Perturbation",
+        "decryption": true
+      },
+      "results": {
+        "query_time": 43.029635190963745,
+        "recall": 0.6,
+        "precision": 0.5966,
+        "mean_distance": 0.6900231242179871,
+        "index_time": 60.952850341796875,
+        "index_memory_MB": 11352.515625,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using Perturbation, decrypt=True",
+      "timestamp": "2025-04-25 01:48:24"
+    },
+    {
+      "run_name": "nndescent_secure_ope_nodec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "OPE",
+        "decryption": false
+      },
+      "results": {
+        "query_time": 43.18629789352417,
+        "recall": 0.8,
+        "precision": 0.65364,
+        "mean_distance": 68.3137435913086,
+        "index_time": 49.1556601524353,
+        "index_memory_MB": 11013.890625,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using OPE, decrypt=False",
+      "timestamp": "2025-04-25 01:50:53"
+    },
+    {
+      "run_name": "nndescent_secure_ope_dec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "OPE",
+        "decryption": true
+      },
+      "results": {
+        "query_time": 42.3149938583374,
+        "recall": 0.8,
+        "precision": 0.65364,
+        "mean_distance": 0.6831374764442444,
+        "index_time": 80.78500294685364,
+        "index_memory_MB": 10782.859375,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using OPE, decrypt=True",
+      "timestamp": "2025-04-25 01:54:00"
+    },
+    {
+      "run_name": "nndescent_secure_dp_nodec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "DP",
+        "decryption": false
+      },
+      "results": {
+        "query_time": 44.71857500076294,
+        "recall": 0.0,
+        "precision": 3e-05,
+        "mean_distance": 28.547502517700195,
+        "index_time": 68.24269223213196,
+        "index_memory_MB": 11262.859375,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using DP, decrypt=False",
+      "timestamp": "2025-04-25 01:57:14"
+    },
+    {
+      "run_name": "nndescent_secure_dp_dec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "DP",
+        "decryption": true
+      },
+      "results": {
+        "query_time": 43.84869718551636,
+        "recall": 0.0,
+        "precision": 1e-05,
+        "mean_distance": 19.49667739868164,
+        "index_time": 75.06936883926392,
+        "index_memory_MB": 12070.609375,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using DP, decrypt=True",
+      "timestamp": "2025-04-25 02:00:27"
+    },
+    {
+      "run_name": "faiss_flat",
+      "params": {
+        "index_type": "flat"
+      },
+      "results": {
+        "query_time": 11.436779975891113,
+        "recall": 0.4,
+        "precision": 0.4,
+        "mean_distance": 0.433838814496994,
+        "index_time": 0.10957121849060059,
+        "index_memory_MB": 4185.328125,
+        "index_size_MB": 0.0
+      },
+      "notes": "FAISS baseline on lightweight data",
+      "timestamp": "2025-04-25 02:00:48"
+    },
+    {
+      "run_name": "faiss_ivf",
+      "params": {
+        "index_type": "ivf"
+      },
+      "results": {
+        "query_time": 1.173020839691162,
+        "recall": 0.5,
+        "precision": 0.41381,
+        "mean_distance": 0.471680223941803,
+        "index_time": 0.30666399002075195,
+        "index_memory_MB": 4085.5625,
+        "index_size_MB": 0.0
+      },
+      "notes": "FAISS baseline on lightweight data",
+      "timestamp": "2025-04-25 02:00:53"
+    },
+    {
+      "run_name": "faiss_hnsw",
+      "params": {
+        "index_type": "hnsw"
+      },
+      "results": {
+        "query_time": 0.11550617218017578,
+        "recall": 0.5,
+        "precision": 0.47946,
+        "mean_distance": 0.4544941484928131,
+        "index_time": 20.17805528640747,
+        "index_memory_MB": 5192.0625,
+        "index_size_MB": 0.0
+      },
+      "notes": "FAISS baseline on lightweight data",
+      "timestamp": "2025-04-25 02:01:43"
+    },
+    {
+      "run_name": "faiss_lsh",
+      "params": {
+        "index_type": "lsh"
+      },
+      "results": {
+        "query_time": 1.675705909729004,
+        "recall": 0.1,
+        "precision": 0.14817,
+        "mean_distance": 22.382919311523438,
+        "index_time": 0.20146703720092773,
+        "index_memory_MB": 3963.671875,
+        "index_size_MB": 0.0
+      },
+      "notes": "FAISS baseline on lightweight data",
+      "timestamp": "2025-04-25 02:01:48"
+    },
+    {
+      "run_name": "nndescent_plain",
+      "params": {
+        "method": "nndescent",
+        "encrypted": false
+      },
+      "results": {
+        "query_time": 1.0483481884002686,
+        "recall": 0.8,
+        "precision": 0.65434,
+        "mean_distance": 0.6832684278488159,
+        "index_time": 76.56670594215393,
+        "index_memory_MB": 10642.5,
+        "index_size_MB": 0.0
+      },
+      "notes": "NNDescent baseline on lightweight data",
+      "timestamp": "2025-04-25 02:04:27"
+    },
+    {
+      "run_name": "nndescent_secure_he_nodec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "HE",
+        "decryption": false
+      },
+      "results": {
+        "query_time": 45.79849600791931,
+        "recall": 0.9,
+        "precision": 0.65493,
+        "mean_distance": 0.6832832098007202,
+        "index_time": 54.11842203140259,
+        "index_memory_MB": 11301.984375,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using HE, decrypt=False",
+      "timestamp": "2025-04-25 02:07:11"
+    },
+    {
+      "run_name": "nndescent_secure_he_dec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "HE",
+        "decryption": true
+      },
+      "results": {
+        "query_time": 43.66358399391174,
+        "recall": 0.8,
+        "precision": 0.65415,
+        "mean_distance": 0.6830631494522095,
+        "index_time": 59.65339493751526,
+        "index_memory_MB": 10670.515625,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using HE, decrypt=True",
+      "timestamp": "2025-04-25 02:09:59"
+    },
+    {
+      "run_name": "nndescent_secure_se_nodec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "SE",
+        "decryption": false
+      },
+      "results": {
+        "query_time": 41.92514514923096,
+        "recall": 0.5,
+        "precision": 0.28021,
+        "mean_distance": 0.4617425799369812,
+        "index_time": 55.18743896484375,
+        "index_memory_MB": 11327.203125,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using SE, decrypt=False",
+      "timestamp": "2025-04-25 02:12:28"
+    },
+    {
+      "run_name": "nndescent_secure_se_dec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "SE",
+        "decryption": true
+      },
+      "results": {
+        "query_time": 42.35421800613403,
+        "recall": 0.5,
+        "precision": 0.39246,
+        "mean_distance": NaN,
+        "index_time": 62.20567965507507,
+        "index_memory_MB": 11191.75,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using SE, decrypt=True",
+      "timestamp": "2025-04-25 02:15:16"
+    },
+    {
+      "run_name": "nndescent_secure_perturbation_nodec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "Perturbation",
+        "decryption": false
+      },
+      "results": {
+        "query_time": 41.470749855041504,
+        "recall": 0.7,
+        "precision": 0.59553,
+        "mean_distance": 0.6954812407493591,
+        "index_time": 66.48906922340393,
+        "index_memory_MB": 11455.0625,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using Perturbation, decrypt=False",
+      "timestamp": "2025-04-25 02:18:22"
+    },
+    {
+      "run_name": "nndescent_secure_perturbation_dec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "Perturbation",
+        "decryption": true
+      },
+      "results": {
+        "query_time": 42.185566902160645,
+        "recall": 0.9,
+        "precision": 0.59694,
+        "mean_distance": 0.6901327967643738,
+        "index_time": 59.89704608917236,
+        "index_memory_MB": 11318.453125,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using Perturbation, decrypt=True",
+      "timestamp": "2025-04-25 02:21:04"
+    },
+    {
+      "run_name": "nndescent_secure_ope_nodec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "OPE",
+        "decryption": false
+      },
+      "results": {
+        "query_time": 41.61047291755676,
+        "recall": 0.8,
+        "precision": 0.65377,
+        "mean_distance": 68.31269836425781,
+        "index_time": 66.44368004798889,
+        "index_memory_MB": 11287.921875,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using OPE, decrypt=False",
+      "timestamp": "2025-04-25 02:23:53"
+    },
+    {
+      "run_name": "nndescent_secure_ope_dec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "OPE",
+        "decryption": true
+      },
+      "results": {
+        "query_time": 44.22825527191162,
+        "recall": 0.8,
+        "precision": 0.65377,
+        "mean_distance": 0.6831269264221191,
+        "index_time": 44.294830083847046,
+        "index_memory_MB": 11656.8125,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using OPE, decrypt=True",
+      "timestamp": "2025-04-25 02:26:24"
+    },
+    {
+      "run_name": "nndescent_secure_dp_nodec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "DP",
+        "decryption": false
+      },
+      "results": {
+        "query_time": 44.051878929138184,
+        "recall": 0.0,
+        "precision": 0.0,
+        "mean_distance": 28.51740264892578,
+        "index_time": 53.102628231048584,
+        "index_memory_MB": 11749.09375,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using DP, decrypt=False",
+      "timestamp": "2025-04-25 02:29:11"
+    },
+    {
+      "run_name": "nndescent_secure_dp_dec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "DP",
+        "decryption": true
+      },
+      "results": {
+        "query_time": 53.14554691314697,
+        "recall": 0.0,
+        "precision": 0.0,
+        "mean_distance": 19.484107971191406,
+        "index_time": 63.68681192398071,
+        "index_memory_MB": 11852.140625,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using DP, decrypt=True",
+      "timestamp": "2025-04-25 02:32:20"
+    },
+    {
+      "run_name": "faiss_flat",
+      "params": {
+        "index_type": "flat"
+      },
+      "results": {
+        "query_time": 11.368489027023315,
+        "recall": 0.4,
+        "precision": 0.4,
+        "mean_distance": 0.43359044194221497,
+        "index_time": 0.10925817489624023,
+        "index_memory_MB": 4307.859375,
+        "index_size_MB": 0.0
+      },
+      "notes": "FAISS baseline on lightweight data",
+      "timestamp": "2025-04-25 02:32:41"
+    },
+    {
+      "run_name": "faiss_ivf",
+      "params": {
+        "index_type": "ivf"
+      },
+      "results": {
+        "query_time": 1.1872591972351074,
+        "recall": 0.5,
+        "precision": 0.41667,
+        "mean_distance": 0.47086450457572937,
+        "index_time": 0.3116872310638428,
+        "index_memory_MB": 4212.46875,
+        "index_size_MB": 0.0
+      },
+      "notes": "FAISS baseline on lightweight data",
+      "timestamp": "2025-04-25 02:32:46"
+    },
+    {
+      "run_name": "faiss_hnsw",
+      "params": {
+        "index_type": "hnsw"
+      },
+      "results": {
+        "query_time": 0.11602401733398438,
+        "recall": 0.5,
+        "precision": 0.47958,
+        "mean_distance": 0.4546608626842499,
+        "index_time": 20.41027808189392,
+        "index_memory_MB": 5340.34375,
+        "index_size_MB": 0.0
+      },
+      "notes": "FAISS baseline on lightweight data",
+      "timestamp": "2025-04-25 02:33:36"
+    },
+    {
+      "run_name": "faiss_lsh",
+      "params": {
+        "index_type": "lsh"
+      },
+      "results": {
+        "query_time": 1.6953799724578857,
+        "recall": 0.1,
+        "precision": 0.14895,
+        "mean_distance": 22.387300491333008,
+        "index_time": 0.20302104949951172,
+        "index_memory_MB": 4111.796875,
+        "index_size_MB": 0.0
+      },
+      "notes": "FAISS baseline on lightweight data",
+      "timestamp": "2025-04-25 02:33:41"
+    },
+    {
+      "run_name": "nndescent_plain",
+      "params": {
+        "method": "nndescent",
+        "encrypted": false
+      },
+      "results": {
+        "query_time": 1.0372939109802246,
+        "recall": 0.7,
+        "precision": 0.65461,
+        "mean_distance": 0.6830297708511353,
+        "index_time": 79.65577006340027,
+        "index_memory_MB": 10775.5625,
+        "index_size_MB": 0.0
+      },
+      "notes": "NNDescent baseline on lightweight data",
+      "timestamp": "2025-04-25 02:36:24"
+    },
+    {
+      "run_name": "nndescent_secure_he_nodec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "HE",
+        "decryption": false
+      },
+      "results": {
+        "query_time": 44.4542191028595,
+        "recall": 0.7,
+        "precision": 0.65417,
+        "mean_distance": 0.6829288005828857,
+        "index_time": 54.58340406417847,
+        "index_memory_MB": 11526.765625,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using HE, decrypt=False",
+      "timestamp": "2025-04-25 02:39:06"
+    },
+    {
+      "run_name": "nndescent_secure_he_dec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "HE",
+        "decryption": true
+      },
+      "results": {
+        "query_time": 44.51596522331238,
+        "recall": 0.8,
+        "precision": 0.65342,
+        "mean_distance": 0.6830376386642456,
+        "index_time": 59.527567863464355,
+        "index_memory_MB": 10606.546875,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using HE, decrypt=True",
+      "timestamp": "2025-04-25 02:41:51"
+    },
+    {
+      "run_name": "nndescent_secure_se_nodec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "SE",
+        "decryption": false
+      },
+      "results": {
+        "query_time": 44.33479714393616,
+        "recall": 0.4,
+        "precision": 0.26255,
+        "mean_distance": 0.4337969422340393,
+        "index_time": 47.13558626174927,
+        "index_memory_MB": 11236.609375,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using SE, decrypt=False",
+      "timestamp": "2025-04-25 02:44:37"
+    },
+    {
+      "run_name": "nndescent_secure_se_dec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "SE",
+        "decryption": true
+      },
+      "results": {
+        "query_time": 41.33873510360718,
+        "recall": 0.3,
+        "precision": 0.28373,
+        "mean_distance": 0.8414783477783203,
+        "index_time": 52.58471202850342,
+        "index_memory_MB": 11368.078125,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using SE, decrypt=True",
+      "timestamp": "2025-04-25 02:47:39"
+    },
+    {
+      "run_name": "nndescent_secure_perturbation_nodec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "Perturbation",
+        "decryption": false
+      },
+      "results": {
+        "query_time": 41.44575309753418,
+        "recall": 0.6,
+        "precision": 0.5949,
+        "mean_distance": 0.695234477519989,
+        "index_time": 274.09851598739624,
+        "index_memory_MB": 11094.0625,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using Perturbation, decrypt=False",
+      "timestamp": "2025-04-25 02:53:56"
+    },
+    {
+      "run_name": "nndescent_secure_perturbation_dec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "Perturbation",
+        "decryption": true
+      },
+      "results": {
+        "query_time": 43.070626974105835,
+        "recall": 0.7,
+        "precision": 0.59999,
+        "mean_distance": 0.6896169781684875,
+        "index_time": 61.38220429420471,
+        "index_memory_MB": 11324.25,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using Perturbation, decrypt=True",
+      "timestamp": "2025-04-25 02:56:46"
+    },
+    {
+      "run_name": "nndescent_secure_ope_nodec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "OPE",
+        "decryption": false
+      },
+      "results": {
+        "query_time": 42.14509105682373,
+        "recall": 0.7,
+        "precision": 0.65449,
+        "mean_distance": 68.2956314086914,
+        "index_time": 53.83986687660217,
+        "index_memory_MB": 11119.453125,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using OPE, decrypt=False",
+      "timestamp": "2025-04-25 02:59:31"
+    },
+    {
+      "run_name": "nndescent_secure_ope_dec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "OPE",
+        "decryption": true
+      },
+      "results": {
+        "query_time": 42.013995885849,
+        "recall": 0.7,
+        "precision": 0.65449,
+        "mean_distance": 0.682956337928772,
+        "index_time": 65.06511211395264,
+        "index_memory_MB": 11308.21875,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using OPE, decrypt=True",
+      "timestamp": "2025-04-25 03:02:22"
+    },
+    {
+      "run_name": "nndescent_secure_dp_nodec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "DP",
+        "decryption": false
+      },
+      "results": {
+        "query_time": 42.298524141311646,
+        "recall": 0.0,
+        "precision": 1e-05,
+        "mean_distance": 28.515295028686523,
+        "index_time": 56.12878894805908,
+        "index_memory_MB": 11467.359375,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using DP, decrypt=False",
+      "timestamp": "2025-04-25 03:05:10"
+    },
+    {
+      "run_name": "nndescent_secure_dp_dec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "DP",
+        "decryption": true
+      },
+      "results": {
+        "query_time": 42.75917196273804,
+        "recall": 0.0,
+        "precision": 1e-05,
+        "mean_distance": 19.56861686706543,
+        "index_time": 63.91455602645874,
+        "index_memory_MB": 11728.125,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using DP, decrypt=True",
+      "timestamp": "2025-04-25 03:08:14"
+    },
+    {
+      "run_name": "faiss_flat",
+      "params": {
+        "index_type": "flat"
+      },
+      "results": {
+        "query_time": 11.44091510772705,
+        "recall": 0.4,
+        "precision": 0.4,
+        "mean_distance": 0.4339453876018524,
+        "index_time": 0.10318493843078613,
+        "index_memory_MB": 4192.34375,
+        "index_size_MB": 0.0
+      },
+      "notes": "FAISS baseline on lightweight data",
+      "timestamp": "2025-04-25 03:08:35"
+    },
+    {
+      "run_name": "faiss_ivf",
+      "params": {
+        "index_type": "ivf"
+      },
+      "results": {
+        "query_time": 1.24159574508667,
+        "recall": 0.5,
+        "precision": 0.4191,
+        "mean_distance": 0.4704281985759735,
+        "index_time": 0.3135218620300293,
+        "index_memory_MB": 4030.375,
+        "index_size_MB": 0.0
+      },
+      "notes": "FAISS baseline on lightweight data",
+      "timestamp": "2025-04-25 03:08:40"
+    },
+    {
+      "run_name": "faiss_hnsw",
+      "params": {
+        "index_type": "hnsw"
+      },
+      "results": {
+        "query_time": 0.11714482307434082,
+        "recall": 0.5,
+        "precision": 0.48095,
+        "mean_distance": 0.45430442690849304,
+        "index_time": 20.5392849445343,
+        "index_memory_MB": 5482.21875,
+        "index_size_MB": 0.0
+      },
+      "notes": "FAISS baseline on lightweight data",
+      "timestamp": "2025-04-25 03:09:32"
+    },
+    {
+      "run_name": "faiss_lsh",
+      "params": {
+        "index_type": "lsh"
+      },
+      "results": {
+        "query_time": 1.6699621677398682,
+        "recall": 0.1,
+        "precision": 0.14959,
+        "mean_distance": 22.3895206451416,
+        "index_time": 0.20463895797729492,
+        "index_memory_MB": 3979.8125,
+        "index_size_MB": 0.0
+      },
+      "notes": "FAISS baseline on lightweight data",
+      "timestamp": "2025-04-25 03:09:36"
+    },
+    {
+      "run_name": "nndescent_plain",
+      "params": {
+        "method": "nndescent",
+        "encrypted": false
+      },
+      "results": {
+        "query_time": 1.4005358219146729,
+        "recall": 0.8,
+        "precision": 0.654,
+        "mean_distance": 0.6832687258720398,
+        "index_time": 79.37012124061584,
+        "index_memory_MB": 10673.0625,
+        "index_size_MB": 0.0
+      },
+      "notes": "NNDescent baseline on lightweight data",
+      "timestamp": "2025-04-25 03:12:18"
+    },
+    {
+      "run_name": "nndescent_secure_he_nodec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "HE",
+        "decryption": false
+      },
+      "results": {
+        "query_time": 49.85319209098816,
+        "recall": 0.5,
+        "precision": 0.65204,
+        "mean_distance": 0.6833634972572327,
+        "index_time": 51.824445962905884,
+        "index_memory_MB": 11665.859375,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using HE, decrypt=False",
+      "timestamp": "2025-04-25 03:15:11"
+    },
+    {
+      "run_name": "nndescent_secure_he_dec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "HE",
+        "decryption": true
+      },
+      "results": {
+        "query_time": 45.27166509628296,
+        "recall": 0.5,
+        "precision": 0.65387,
+        "mean_distance": 0.6833179593086243,
+        "index_time": 58.27310228347778,
+        "index_memory_MB": 10793.015625,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using HE, decrypt=True",
+      "timestamp": "2025-04-25 03:17:57"
+    },
+    {
+      "run_name": "nndescent_secure_se_nodec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "SE",
+        "decryption": false
+      },
+      "results": {
+        "query_time": 44.128316164016724,
+        "recall": 0.5,
+        "precision": 0.3324,
+        "mean_distance": 0.5123501420021057,
+        "index_time": 54.40923881530762,
+        "index_memory_MB": 11117.390625,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using SE, decrypt=False",
+      "timestamp": "2025-04-25 03:20:50"
+    },
+    {
+      "run_name": "nndescent_secure_se_dec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "SE",
+        "decryption": true
+      },
+      "results": {
+        "query_time": 42.78199505805969,
+        "recall": 0.4,
+        "precision": 0.32942,
+        "mean_distance": NaN,
+        "index_time": 51.168740034103394,
+        "index_memory_MB": 10709.203125,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using SE, decrypt=True",
+      "timestamp": "2025-04-25 03:25:35"
+    },
+    {
+      "run_name": "nndescent_secure_perturbation_nodec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "Perturbation",
+        "decryption": false
+      },
+      "results": {
+        "query_time": 43.940171003341675,
+        "recall": 0.8,
+        "precision": 0.59697,
+        "mean_distance": 0.6952380537986755,
+        "index_time": 63.80319309234619,
+        "index_memory_MB": 11373.71875,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using Perturbation, decrypt=False",
+      "timestamp": "2025-04-25 03:28:20"
+    },
+    {
+      "run_name": "nndescent_secure_perturbation_dec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "Perturbation",
+        "decryption": true
+      },
+      "results": {
+        "query_time": 41.71271109580994,
+        "recall": 0.6,
+        "precision": 0.59607,
+        "mean_distance": 0.6898186206817627,
+        "index_time": 58.50022315979004,
+        "index_memory_MB": 11432.171875,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using Perturbation, decrypt=True",
+      "timestamp": "2025-04-25 03:31:18"
+    },
+    {
+      "run_name": "nndescent_secure_ope_nodec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "OPE",
+        "decryption": false
+      },
+      "results": {
+        "query_time": 42.77847909927368,
+        "recall": 0.6,
+        "precision": 0.655,
+        "mean_distance": 68.3149185180664,
+        "index_time": 113.77403497695923,
+        "index_memory_MB": 11092.203125,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using OPE, decrypt=False",
+      "timestamp": "2025-04-25 03:34:55"
+    },
+    {
+      "run_name": "nndescent_secure_ope_dec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "OPE",
+        "decryption": true
+      },
+      "results": {
+        "query_time": 42.227550983428955,
+        "recall": 0.6,
+        "precision": 0.655,
+        "mean_distance": 0.683148980140686,
+        "index_time": 48.18361711502075,
+        "index_memory_MB": 11445.96875,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using OPE, decrypt=True",
+      "timestamp": "2025-04-25 03:37:18"
+    },
+    {
+      "run_name": "nndescent_secure_dp_nodec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "DP",
+        "decryption": false
+      },
+      "results": {
+        "query_time": 43.23271918296814,
+        "recall": 0.0,
+        "precision": 0.0,
+        "mean_distance": 28.552932739257812,
+        "index_time": 194.46236085891724,
+        "index_memory_MB": 11380.5625,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using DP, decrypt=False",
+      "timestamp": "2025-04-25 03:42:33"
+    },
+    {
+      "run_name": "nndescent_secure_dp_dec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "DP",
+        "decryption": true
+      },
+      "results": {
+        "query_time": 42.87043881416321,
+        "recall": 0.0,
+        "precision": 1e-05,
+        "mean_distance": 19.52955436706543,
+        "index_time": 63.31440997123718,
+        "index_memory_MB": 11760.96875,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using DP, decrypt=True",
+      "timestamp": "2025-04-25 03:45:31"
+    },
+    {
+      "run_name": "faiss_flat",
+      "params": {
+        "index_type": "flat"
+      },
+      "results": {
+        "query_time": 11.350470781326294,
+        "recall": 0.4,
+        "precision": 0.4,
+        "mean_distance": 0.4335707426071167,
+        "index_time": 0.1102139949798584,
+        "index_memory_MB": 4188.625,
+        "index_size_MB": 0.0
+      },
+      "notes": "FAISS baseline on lightweight data",
+      "timestamp": "2025-04-25 03:45:52"
+    },
+    {
+      "run_name": "faiss_ivf",
+      "params": {
+        "index_type": "ivf"
+      },
+      "results": {
+        "query_time": 1.221745252609253,
+        "recall": 0.5,
+        "precision": 0.41436,
+        "mean_distance": 0.47136032581329346,
+        "index_time": 0.3202810287475586,
+        "index_memory_MB": 4137.5,
+        "index_size_MB": 0.0
+      },
+      "notes": "FAISS baseline on lightweight data",
+      "timestamp": "2025-04-25 03:45:57"
+    },
+    {
+      "run_name": "faiss_hnsw",
+      "params": {
+        "index_type": "hnsw"
+      },
+      "results": {
+        "query_time": 0.11552882194519043,
+        "recall": 0.5,
+        "precision": 0.48097,
+        "mean_distance": 0.45389026403427124,
+        "index_time": 20.630834102630615,
+        "index_memory_MB": 5218.78125,
+        "index_size_MB": 0.0
+      },
+      "notes": "FAISS baseline on lightweight data",
+      "timestamp": "2025-04-25 03:46:48"
+    },
+    {
+      "run_name": "faiss_lsh",
+      "params": {
+        "index_type": "lsh"
+      },
+      "results": {
+        "query_time": 1.6646490097045898,
+        "recall": 0.1,
+        "precision": 0.14742,
+        "mean_distance": 22.392459869384766,
+        "index_time": 0.20692801475524902,
+        "index_memory_MB": 3990.296875,
+        "index_size_MB": 0.0
+      },
+      "notes": "FAISS baseline on lightweight data",
+      "timestamp": "2025-04-25 03:46:53"
+    },
+    {
+      "run_name": "nndescent_plain",
+      "params": {
+        "method": "nndescent",
+        "encrypted": false
+      },
+      "results": {
+        "query_time": 1.0606539249420166,
+        "recall": 0.9,
+        "precision": 0.65459,
+        "mean_distance": 0.6830310821533203,
+        "index_time": 82.63118410110474,
+        "index_memory_MB": 10749.90625,
+        "index_size_MB": 0.0
+      },
+      "notes": "NNDescent baseline on lightweight data",
+      "timestamp": "2025-04-25 03:49:40"
+    },
+    {
+      "run_name": "nndescent_secure_he_nodec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "HE",
+        "decryption": false
+      },
+      "results": {
+        "query_time": 44.92042112350464,
+        "recall": 0.8,
+        "precision": 0.65422,
+        "mean_distance": 0.6832523941993713,
+        "index_time": 86.63952803611755,
+        "index_memory_MB": 11568.90625,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using HE, decrypt=False",
+      "timestamp": "2025-04-25 03:53:03"
+    },
+    {
+      "run_name": "nndescent_secure_he_dec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "HE",
+        "decryption": true
+      },
+      "results": {
+        "query_time": 43.398956060409546,
+        "recall": 0.9,
+        "precision": 0.65532,
+        "mean_distance": 0.6830289959907532,
+        "index_time": 48.063552141189575,
+        "index_memory_MB": 10451.953125,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using HE, decrypt=True",
+      "timestamp": "2025-04-25 03:55:42"
+    },
+    {
+      "run_name": "nndescent_secure_se_nodec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "SE",
+        "decryption": false
+      },
+      "results": {
+        "query_time": 41.307677030563354,
+        "recall": 0.4,
+        "precision": 0.34738,
+        "mean_distance": 0.5405521988868713,
+        "index_time": 64.75648617744446,
+        "index_memory_MB": 10993.875,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using SE, decrypt=False",
+      "timestamp": "2025-04-25 03:58:33"
+    },
+    {
+      "run_name": "nndescent_secure_se_dec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "SE",
+        "decryption": true
+      },
+      "results": {
+        "query_time": 40.35150909423828,
+        "recall": 0.0,
+        "precision": 0.27237,
+        "mean_distance": 0.8549827337265015,
+        "index_time": 69.10751986503601,
+        "index_memory_MB": 11060.78125,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using SE, decrypt=True",
+      "timestamp": "2025-04-25 04:01:14"
+    },
+    {
+      "run_name": "nndescent_secure_perturbation_nodec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "Perturbation",
+        "decryption": false
+      },
+      "results": {
+        "query_time": 41.43915796279907,
+        "recall": 0.7,
+        "precision": 0.59488,
+        "mean_distance": 0.695019006729126,
+        "index_time": 265.75096821784973,
+        "index_memory_MB": 11273.9375,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using Perturbation, decrypt=False",
+      "timestamp": "2025-04-25 04:07:32"
+    },
+    {
+      "run_name": "nndescent_secure_perturbation_dec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "Perturbation",
+        "decryption": true
+      },
+      "results": {
+        "query_time": 42.488476276397705,
+        "recall": 0.8,
+        "precision": 0.59705,
+        "mean_distance": 0.6899061799049377,
+        "index_time": 64.54644298553467,
+        "index_memory_MB": 11484.734375,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using Perturbation, decrypt=True",
+      "timestamp": "2025-04-25 04:10:18"
+    },
+    {
+      "run_name": "nndescent_secure_ope_nodec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "OPE",
+        "decryption": false
+      },
+      "results": {
+        "query_time": 42.479629039764404,
+        "recall": 0.8,
+        "precision": 0.65532,
+        "mean_distance": 68.30420684814453,
+        "index_time": 106.76979303359985,
+        "index_memory_MB": 10803.5,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using OPE, decrypt=False",
+      "timestamp": "2025-04-25 04:13:44"
+    },
+    {
+      "run_name": "nndescent_secure_ope_dec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "OPE",
+        "decryption": true
+      },
+      "results": {
+        "query_time": 41.94993877410889,
+        "recall": 0.8,
+        "precision": 0.65532,
+        "mean_distance": 0.6830421090126038,
+        "index_time": 177.72580695152283,
+        "index_memory_MB": 11147.78125,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using OPE, decrypt=True",
+      "timestamp": "2025-04-25 04:18:24"
+    },
+    {
+      "run_name": "nndescent_secure_dp_nodec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "DP",
+        "decryption": false
+      },
+      "results": {
+        "query_time": 44.91923403739929,
+        "recall": 0.0,
+        "precision": 2e-05,
+        "mean_distance": 28.524614334106445,
+        "index_time": 53.82528376579285,
+        "index_memory_MB": 11382.9375,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using DP, decrypt=False",
+      "timestamp": "2025-04-25 04:21:22"
+    },
+    {
+      "run_name": "nndescent_secure_dp_dec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "DP",
+        "decryption": true
+      },
+      "results": {
+        "query_time": 44.78409767150879,
+        "recall": 0.0,
+        "precision": 0.0,
+        "mean_distance": 19.513273239135742,
+        "index_time": 68.02457284927368,
+        "index_memory_MB": 11858.65625,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using DP, decrypt=True",
+      "timestamp": "2025-04-25 04:25:13"
+    },
+    {
+      "run_name": "faiss_flat",
+      "params": {
+        "index_type": "flat"
+      },
+      "results": {
+        "query_time": 11.384469032287598,
+        "recall": 0.4,
+        "precision": 0.4,
+        "mean_distance": 0.43399009108543396,
+        "index_time": 0.11012887954711914,
+        "index_memory_MB": 4212.6875,
+        "index_size_MB": 0.0
+      },
+      "notes": "FAISS baseline on lightweight data",
+      "timestamp": "2025-04-25 04:25:35"
+    },
+    {
+      "run_name": "faiss_ivf",
+      "params": {
+        "index_type": "ivf"
+      },
+      "results": {
+        "query_time": 1.2643210887908936,
+        "recall": 0.5,
+        "precision": 0.41688,
+        "mean_distance": 0.47127753496170044,
+        "index_time": 0.31044459342956543,
+        "index_memory_MB": 4044.9375,
+        "index_size_MB": 0.0
+      },
+      "notes": "FAISS baseline on lightweight data",
+      "timestamp": "2025-04-25 04:25:40"
+    },
+    {
+      "run_name": "faiss_hnsw",
+      "params": {
+        "index_type": "hnsw"
+      },
+      "results": {
+        "query_time": 0.11613082885742188,
+        "recall": 0.5,
+        "precision": 0.48046,
+        "mean_distance": 0.45451217889785767,
+        "index_time": 20.138988733291626,
+        "index_memory_MB": 5234.4375,
+        "index_size_MB": 0.0
+      },
+      "notes": "FAISS baseline on lightweight data",
+      "timestamp": "2025-04-25 04:26:30"
+    },
+    {
+      "run_name": "faiss_lsh",
+      "params": {
+        "index_type": "lsh"
+      },
+      "results": {
+        "query_time": 1.671665906906128,
+        "recall": 0.2,
+        "precision": 0.14876,
+        "mean_distance": 22.380739212036133,
+        "index_time": 0.20242524147033691,
+        "index_memory_MB": 3936.4375,
+        "index_size_MB": 0.0
+      },
+      "notes": "FAISS baseline on lightweight data",
+      "timestamp": "2025-04-25 04:26:35"
+    },
+    {
+      "run_name": "nndescent_plain",
+      "params": {
+        "method": "nndescent",
+        "encrypted": false
+      },
+      "results": {
+        "query_time": 1.0485467910766602,
+        "recall": 0.8,
+        "precision": 0.65254,
+        "mean_distance": 0.6833997368812561,
+        "index_time": 78.53216910362244,
+        "index_memory_MB": 10693.59375,
+        "index_size_MB": 0.0
+      },
+      "notes": "NNDescent baseline on lightweight data",
+      "timestamp": "2025-04-25 04:29:14"
+    },
+    {
+      "run_name": "nndescent_secure_he_nodec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "HE",
+        "decryption": false
+      },
+      "results": {
+        "query_time": 43.06516194343567,
+        "recall": 0.8,
+        "precision": 0.65352,
+        "mean_distance": 0.6833781003952026,
+        "index_time": 86.21006679534912,
+        "index_memory_MB": 10481.75,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using HE, decrypt=False",
+      "timestamp": "2025-04-25 04:32:25"
+    },
+    {
+      "run_name": "nndescent_secure_he_dec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "HE",
+        "decryption": true
+      },
+      "results": {
+        "query_time": 45.19779300689697,
+        "recall": 0.9,
+        "precision": 0.65223,
+        "mean_distance": 0.6835185885429382,
+        "index_time": 54.80723810195923,
+        "index_memory_MB": 10902.015625,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using HE, decrypt=True",
+      "timestamp": "2025-04-25 04:35:07"
+    },
+    {
+      "run_name": "nndescent_secure_se_nodec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "SE",
+        "decryption": false
+      },
+      "results": {
+        "query_time": 44.26163387298584,
+        "recall": 0.3,
+        "precision": 0.35013,
+        "mean_distance": 0.5222283601760864,
+        "index_time": 52.405179023742676,
+        "index_memory_MB": 10759.078125,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using SE, decrypt=False",
+      "timestamp": "2025-04-25 04:37:52"
+    },
+    {
+      "run_name": "nndescent_secure_se_dec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "SE",
+        "decryption": true
+      },
+      "results": {
+        "query_time": 40.46585011482239,
+        "recall": 0.4,
+        "precision": 0.31353,
+        "mean_distance": 0.8238063454627991,
+        "index_time": 53.77678084373474,
+        "index_memory_MB": 10562.171875,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using SE, decrypt=True",
+      "timestamp": "2025-04-25 04:40:28"
+    },
+    {
+      "run_name": "nndescent_secure_perturbation_nodec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "Perturbation",
+        "decryption": false
+      },
+      "results": {
+        "query_time": 40.96405100822449,
+        "recall": 0.7,
+        "precision": 0.59854,
+        "mean_distance": 0.6950339078903198,
+        "index_time": 51.87279486656189,
+        "index_memory_MB": 11241.578125,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using Perturbation, decrypt=False",
+      "timestamp": "2025-04-25 04:43:21"
+    },
+    {
+      "run_name": "nndescent_secure_perturbation_dec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "Perturbation",
+        "decryption": true
+      },
+      "results": {
+        "query_time": 42.59874987602234,
+        "recall": 0.8,
+        "precision": 0.59545,
+        "mean_distance": 0.6902336478233337,
+        "index_time": 67.83854794502258,
+        "index_memory_MB": 11484.1875,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using Perturbation, decrypt=True",
+      "timestamp": "2025-04-25 04:46:08"
+    },
+    {
+      "run_name": "nndescent_secure_ope_nodec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "OPE",
+        "decryption": false
+      },
+      "results": {
+        "query_time": 41.96087312698364,
+        "recall": 0.9,
+        "precision": 0.65298,
+        "mean_distance": 68.35917663574219,
+        "index_time": 54.12608218193054,
+        "index_memory_MB": 11613.328125,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using OPE, decrypt=False",
+      "timestamp": "2025-04-25 04:48:48"
+    },
+    {
+      "run_name": "nndescent_secure_ope_dec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "OPE",
+        "decryption": true
+      },
+      "results": {
+        "query_time": 43.18684697151184,
+        "recall": 0.9,
+        "precision": 0.65298,
+        "mean_distance": 0.6835917830467224,
+        "index_time": 60.63729500770569,
+        "index_memory_MB": 11714.921875,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using OPE, decrypt=True",
+      "timestamp": "2025-04-25 04:51:28"
+    },
+    {
+      "run_name": "nndescent_secure_dp_nodec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "DP",
+        "decryption": false
+      },
+      "results": {
+        "query_time": 42.33176231384277,
+        "recall": 0.0,
+        "precision": 2e-05,
+        "mean_distance": 28.53897476196289,
+        "index_time": 54.12008619308472,
+        "index_memory_MB": 11868.75,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using DP, decrypt=False",
+      "timestamp": "2025-04-25 04:54:14"
+    },
+    {
+      "run_name": "nndescent_secure_dp_dec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "DP",
+        "decryption": true
+      },
+      "results": {
+        "query_time": 44.12895488739014,
+        "recall": 0.0,
+        "precision": 2e-05,
+        "mean_distance": 19.533300399780273,
+        "index_time": 72.00547504425049,
+        "index_memory_MB": 12015.28125,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using DP, decrypt=True",
+      "timestamp": "2025-04-25 04:57:28"
+    },
+    {
+      "run_name": "faiss_flat",
+      "params": {
+        "index_type": "flat"
+      },
+      "results": {
+        "query_time": 11.36391019821167,
+        "recall": 0.4,
+        "precision": 0.4,
+        "mean_distance": 0.4336700737476349,
+        "index_time": 0.10711312294006348,
+        "index_memory_MB": 4184.6875,
+        "index_size_MB": 0.0
+      },
+      "notes": "FAISS baseline on lightweight data",
+      "timestamp": "2025-04-25 04:57:49"
+    },
+    {
+      "run_name": "faiss_ivf",
+      "params": {
+        "index_type": "ivf"
+      },
+      "results": {
+        "query_time": 1.2375187873840332,
+        "recall": 0.5,
+        "precision": 0.41617,
+        "mean_distance": 0.4707985520362854,
+        "index_time": 0.3118720054626465,
+        "index_memory_MB": 4134.875,
+        "index_size_MB": 0.0
+      },
+      "notes": "FAISS baseline on lightweight data",
+      "timestamp": "2025-04-25 04:57:54"
+    },
+    {
+      "run_name": "faiss_hnsw",
+      "params": {
+        "index_type": "hnsw"
+      },
+      "results": {
+        "query_time": 0.11462998390197754,
+        "recall": 0.5,
+        "precision": 0.48009,
+        "mean_distance": 0.45432063937187195,
+        "index_time": 20.574382781982422,
+        "index_memory_MB": 5345.703125,
+        "index_size_MB": 0.0
+      },
+      "notes": "FAISS baseline on lightweight data",
+      "timestamp": "2025-04-25 04:58:45"
+    },
+    {
+      "run_name": "faiss_lsh",
+      "params": {
+        "index_type": "lsh"
+      },
+      "results": {
+        "query_time": 1.6606416702270508,
+        "recall": 0.1,
+        "precision": 0.15,
+        "mean_distance": 22.381439208984375,
+        "index_time": 0.20035886764526367,
+        "index_memory_MB": 3997.0625,
+        "index_size_MB": 0.0
+      },
+      "notes": "FAISS baseline on lightweight data",
+      "timestamp": "2025-04-25 04:58:50"
+    },
+    {
+      "run_name": "nndescent_plain",
+      "params": {
+        "method": "nndescent",
+        "encrypted": false
+      },
+      "results": {
+        "query_time": 1.0533480644226074,
+        "recall": 0.9,
+        "precision": 0.65988,
+        "mean_distance": 0.6827901601791382,
+        "index_time": 77.62339210510254,
+        "index_memory_MB": 10817.0,
+        "index_size_MB": 0.0
+      },
+      "notes": "NNDescent baseline on lightweight data",
+      "timestamp": "2025-04-25 05:01:29"
+    },
+    {
+      "run_name": "nndescent_secure_he_nodec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "HE",
+        "decryption": false
+      },
+      "results": {
+        "query_time": 43.407397747039795,
+        "recall": 0.9,
+        "precision": 0.65694,
+        "mean_distance": 0.6829038262367249,
+        "index_time": 118.74194693565369,
+        "index_memory_MB": 10978.296875,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using HE, decrypt=False",
+      "timestamp": "2025-04-25 05:05:11"
+    },
+    {
+      "run_name": "nndescent_secure_he_dec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "HE",
+        "decryption": true
+      },
+      "results": {
+        "query_time": 44.81076121330261,
+        "recall": 0.9,
+        "precision": 0.65674,
+        "mean_distance": 0.6831774711608887,
+        "index_time": 94.02431321144104,
+        "index_memory_MB": 10815.4375,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using HE, decrypt=True",
+      "timestamp": "2025-04-25 05:08:32"
+    },
+    {
+      "run_name": "nndescent_secure_se_nodec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "SE",
+        "decryption": false
+      },
+      "results": {
+        "query_time": 38.38018989562988,
+        "recall": 0.5,
+        "precision": 0.29421,
+        "mean_distance": 0.4770483076572418,
+        "index_time": 84.50150895118713,
+        "index_memory_MB": 11014.125,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using SE, decrypt=False",
+      "timestamp": "2025-04-25 05:11:34"
+    },
+    {
+      "run_name": "nndescent_secure_se_dec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "SE",
+        "decryption": true
+      },
+      "results": {
+        "query_time": 41.11074495315552,
+        "recall": 0.3,
+        "precision": 0.29353,
+        "mean_distance": 0.8276154398918152,
+        "index_time": 59.615304946899414,
+        "index_memory_MB": 10986.625,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using SE, decrypt=True",
+      "timestamp": "2025-04-25 05:14:31"
+    },
+    {
+      "run_name": "nndescent_secure_perturbation_nodec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "Perturbation",
+        "decryption": false
+      },
+      "results": {
+        "query_time": 42.97882103919983,
+        "recall": 0.7,
+        "precision": 0.59882,
+        "mean_distance": 0.6950532793998718,
+        "index_time": 109.5683650970459,
+        "index_memory_MB": 11222.953125,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using Perturbation, decrypt=False",
+      "timestamp": "2025-04-25 05:18:02"
+    },
+    {
+      "run_name": "nndescent_secure_perturbation_dec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "Perturbation",
+        "decryption": true
+      },
+      "results": {
+        "query_time": 44.015302896499634,
+        "recall": 0.6,
+        "precision": 0.59903,
+        "mean_distance": 0.6896798610687256,
+        "index_time": 47.99944710731506,
+        "index_memory_MB": 11461.53125,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using Perturbation, decrypt=True",
+      "timestamp": "2025-04-25 05:20:40"
+    },
+    {
+      "run_name": "nndescent_secure_ope_nodec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "OPE",
+        "decryption": false
+      },
+      "results": {
+        "query_time": 41.47320294380188,
+        "recall": 0.9,
+        "precision": 0.65675,
+        "mean_distance": 68.31763458251953,
+        "index_time": 53.05329418182373,
+        "index_memory_MB": 11590.125,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using OPE, decrypt=False",
+      "timestamp": "2025-04-25 05:23:12"
+    },
+    {
+      "run_name": "nndescent_secure_ope_dec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "OPE",
+        "decryption": true
+      },
+      "results": {
+        "query_time": 41.8992018699646,
+        "recall": 0.9,
+        "precision": 0.65675,
+        "mean_distance": 0.6831762790679932,
+        "index_time": 161.6185667514801,
+        "index_memory_MB": 11339.90625,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using OPE, decrypt=True",
+      "timestamp": "2025-04-25 05:27:40"
+    },
+    {
+      "run_name": "nndescent_secure_dp_nodec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "DP",
+        "decryption": false
+      },
+      "results": {
+        "query_time": 43.34341311454773,
+        "recall": 0.0,
+        "precision": 1e-05,
+        "mean_distance": 28.506370544433594,
+        "index_time": 74.2176558971405,
+        "index_memory_MB": 11783.6875,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using DP, decrypt=False",
+      "timestamp": "2025-04-25 05:30:47"
+    },
+    {
+      "run_name": "nndescent_secure_dp_dec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "DP",
+        "decryption": true
+      },
+      "results": {
+        "query_time": 43.25422501564026,
+        "recall": 0.0,
+        "precision": 3e-05,
+        "mean_distance": 19.515670776367188,
+        "index_time": 64.18619203567505,
+        "index_memory_MB": 11728.328125,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using DP, decrypt=True",
+      "timestamp": "2025-04-25 05:33:48"
+    },
+    {
+      "run_name": "faiss_flat",
+      "params": {
+        "index_type": "flat"
+      },
+      "results": {
+        "query_time": 11.338413000106812,
+        "recall": 0.4,
+        "precision": 0.4,
+        "mean_distance": 0.4337005615234375,
+        "index_time": 0.10187387466430664,
+        "index_memory_MB": 4306.234375,
+        "index_size_MB": 0.0
+      },
+      "notes": "FAISS baseline on lightweight data",
+      "timestamp": "2025-04-25 05:34:09"
+    },
+    {
+      "run_name": "faiss_ivf",
+      "params": {
+        "index_type": "ivf"
+      },
+      "results": {
+        "query_time": 1.1905951499938965,
+        "recall": 0.5,
+        "precision": 0.41551,
+        "mean_distance": 0.47141626477241516,
+        "index_time": 0.31404805183410645,
+        "index_memory_MB": 4252.4375,
+        "index_size_MB": 0.0
+      },
+      "notes": "FAISS baseline on lightweight data",
+      "timestamp": "2025-04-25 05:34:14"
+    },
+    {
+      "run_name": "faiss_hnsw",
+      "params": {
+        "index_type": "hnsw"
+      },
+      "results": {
+        "query_time": 0.11605191230773926,
+        "recall": 0.5,
+        "precision": 0.47943,
+        "mean_distance": 0.45463085174560547,
+        "index_time": 20.237417936325073,
+        "index_memory_MB": 5318.203125,
+        "index_size_MB": 0.0
+      },
+      "notes": "FAISS baseline on lightweight data",
+      "timestamp": "2025-04-25 05:35:04"
+    },
+    {
+      "run_name": "faiss_lsh",
+      "params": {
+        "index_type": "lsh"
+      },
+      "results": {
+        "query_time": 1.6798009872436523,
+        "recall": 0.3,
+        "precision": 0.14796,
+        "mean_distance": 22.387359619140625,
+        "index_time": 0.19951701164245605,
+        "index_memory_MB": 4083.421875,
+        "index_size_MB": 0.0
+      },
+      "notes": "FAISS baseline on lightweight data",
+      "timestamp": "2025-04-25 05:35:09"
+    },
+    {
+      "run_name": "nndescent_plain",
+      "params": {
+        "method": "nndescent",
+        "encrypted": false
+      },
+      "results": {
+        "query_time": 1.0608892440795898,
+        "recall": 0.8,
+        "precision": 0.65234,
+        "mean_distance": 0.683344304561615,
+        "index_time": 90.62317705154419,
+        "index_memory_MB": 10870.59375,
+        "index_size_MB": 0.0
+      },
+      "notes": "NNDescent baseline on lightweight data",
+      "timestamp": "2025-04-25 05:38:03"
+    },
+    {
+      "run_name": "nndescent_secure_he_nodec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "HE",
+        "decryption": false
+      },
+      "results": {
+        "query_time": 44.973392963409424,
+        "recall": 0.8,
+        "precision": 0.65227,
+        "mean_distance": 0.6835770606994629,
+        "index_time": 67.15563583374023,
+        "index_memory_MB": 11907.859375,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using HE, decrypt=False",
+      "timestamp": "2025-04-25 05:40:57"
+    },
+    {
+      "run_name": "nndescent_secure_he_dec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "HE",
+        "decryption": true
+      },
+      "results": {
+        "query_time": 42.535916805267334,
+        "recall": 0.8,
+        "precision": 0.65206,
+        "mean_distance": 0.6833198666572571,
+        "index_time": 54.36315703392029,
+        "index_memory_MB": 10594.0,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using HE, decrypt=True",
+      "timestamp": "2025-04-25 05:43:40"
+    },
+    {
+      "run_name": "nndescent_secure_se_nodec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "SE",
+        "decryption": false
+      },
+      "results": {
+        "query_time": 41.218798875808716,
+        "recall": 0.5,
+        "precision": 0.33932,
+        "mean_distance": 0.523273229598999,
+        "index_time": 66.55915689468384,
+        "index_memory_MB": 11593.078125,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using SE, decrypt=False",
+      "timestamp": "2025-04-25 05:46:17"
+    },
+    {
+      "run_name": "nndescent_secure_se_dec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "SE",
+        "decryption": true
+      },
+      "results": {
+        "query_time": 42.13468408584595,
+        "recall": 0.6,
+        "precision": 0.30574,
+        "mean_distance": NaN,
+        "index_time": 129.11342787742615,
+        "index_memory_MB": 11556.109375,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using SE, decrypt=True",
+      "timestamp": "2025-04-25 05:50:08"
+    },
+    {
+      "run_name": "nndescent_secure_perturbation_nodec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "Perturbation",
+        "decryption": false
+      },
+      "results": {
+        "query_time": 42.803144216537476,
+        "recall": 0.8,
+        "precision": 0.59396,
+        "mean_distance": 0.6957830190658569,
+        "index_time": 54.592828035354614,
+        "index_memory_MB": 11786.359375,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using Perturbation, decrypt=False",
+      "timestamp": "2025-04-25 05:52:53"
+    },
+    {
+      "run_name": "nndescent_secure_perturbation_dec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "Perturbation",
+        "decryption": true
+      },
+      "results": {
+        "query_time": 41.63838005065918,
+        "recall": 0.8,
+        "precision": 0.5952,
+        "mean_distance": 0.6901260018348694,
+        "index_time": 58.95859909057617,
+        "index_memory_MB": 11696.515625,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using Perturbation, decrypt=True",
+      "timestamp": "2025-04-25 05:55:34"
+    },
+    {
+      "run_name": "nndescent_secure_ope_nodec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "OPE",
+        "decryption": false
+      },
+      "results": {
+        "query_time": 42.55081009864807,
+        "recall": 0.9,
+        "precision": 0.65204,
+        "mean_distance": 68.3432846069336,
+        "index_time": 52.036465883255005,
+        "index_memory_MB": 11669.5,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using OPE, decrypt=False",
+      "timestamp": "2025-04-25 05:58:05"
+    },
+    {
+      "run_name": "nndescent_secure_ope_dec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "OPE",
+        "decryption": true
+      },
+      "results": {
+        "query_time": 41.6775381565094,
+        "recall": 0.9,
+        "precision": 0.65204,
+        "mean_distance": 0.6834328174591064,
+        "index_time": 44.948163986206055,
+        "index_memory_MB": 11848.65625,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using OPE, decrypt=True",
+      "timestamp": "2025-04-25 06:00:33"
+    },
+    {
+      "run_name": "nndescent_secure_dp_nodec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "DP",
+        "decryption": false
+      },
+      "results": {
+        "query_time": 44.652398109436035,
+        "recall": 0.0,
+        "precision": 1e-05,
+        "mean_distance": 28.51947784423828,
+        "index_time": 127.54929184913635,
+        "index_memory_MB": 11767.15625,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using DP, decrypt=False",
+      "timestamp": "2025-04-25 06:04:34"
+    },
+    {
+      "run_name": "nndescent_secure_dp_dec",
+      "params": {
+        "method": "nndescent",
+        "encrypted": true,
+        "encryption": "DP",
+        "decryption": true
+      },
+      "results": {
+        "query_time": 45.06362295150757,
+        "recall": 0.0,
+        "precision": 1e-05,
+        "mean_distance": 19.505159378051758,
+        "index_time": 77.24801802635193,
+        "index_memory_MB": 11688.515625,
+        "index_size_MB": 0
+      },
+      "notes": "Secure NNDescent using DP, decrypt=True",
+      "timestamp": "2025-04-25 06:08:04"
+    }
+  ]
+}
